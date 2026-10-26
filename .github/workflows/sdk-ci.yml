@@ -1,0 +1,26 @@
+name: ViniPoly SDK & CLI Validation
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Public CLI Bash Syntax
+        run: bash -n cli/install-public.sh
+
+      - name: Validate JavaScript SDK Syntax
+        run: node --check sdk/js/vinipoly_sdk.js && node --check examples/js_quickstart.js
+
+      - name: Validate Python SDK Syntax
+        run: python3 -m py_compile sdk/python/vinipoly_sdk.py examples/python_quickstart.py
+
+      - name: Validate Postman JSON Collections
+        run: |
+          python3 -c "import json; json.load(open('postman/vinipoly_drm_postman_collection.en.json')); json.load(open('postman/vinipoly_drm_postman_collection.vi.json'))"

@@ -1,0 +1,8 @@
+# Chuyển hướng trình duyệt từ file có đuôi .cme sang không đuôi (Để làm sạch URL)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/([^.]+)\.cme [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# Xử lý ngầm: Khi khách truy cập /index, hệ thống tự hiểu là chạy file /index.cme
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.cme -f
+RewriteRule ^(.*)$ $1.cme [L]

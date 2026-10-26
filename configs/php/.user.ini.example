@@ -1,0 +1,1 @@
+open_basedir=/www/wwwroot/your-domain.com/:/tmp/:/www/server/

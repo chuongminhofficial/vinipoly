@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "vinipoly-drm-cloud-api-2026-vi",
+    "name": "ViniPoly DRM Cloud API (Bộ Sưu Tập Chính Thức - VI)",
+    "description": "Bộ tài liệu Postman Collection v2.1.0 chính thức cho khách hàng tích hợp ViniPoly DRM (`https://vinipoly.cm.io.vn/api/drm`): Kiểm tra hạn ngạch, cấu hình tường lửa Allowed Hosts, xem lịch sử mã hóa và tự động hóa mã hóa `.php` sang `.cme` trên đám mây.\n\n- **Lưu ý bảo mật**: Chỉ bao gồm các Public Client Endpoints (`/api/drm/*`), hoàn toàn không chứa bất kỳ Admin Endpoint nào.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://vinipoly.cm.io.vn/api/drm",
+      "type": "string",
+      "description": "Endpoint gốc của ViniPoly Cloud DRM API"
+    },
+    {
+      "key": "api_key",
+      "value": "VP_your_api_key_here",
+      "type": "string",
+      "description": "Khóa API Key ViniPoly của bạn"
+    },
+    {
+      "key": "upload_id",
+      "value": "VP_DEMO1234",
+      "type": "string",
+      "description": "Mã phiên tải lên gói ZIP (Upload ID)"
+    }
+  ],
+  "item": [
+    {
+      "name": "01. Quản Lý Tài Khoản, Hạn Ngạch & Tường Lửa (Account & Firewall)",
+      "item": [
+        {
+          "name": "1.1. Tra cứu Thông tin Gói cước & Hạn ngạch (GET /info)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/info?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "info"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Trả về thông tin gói dịch vụ (`plan`), số lượt mã hóa còn lại (`quota`), trạng thái khóa (`status`), danh sách `hosts` và ngày hết hạn (`expire`)."
+          }
+        },
+        {
+          "name": "1.2. Xem Cấu hình Bảo mật & Allowed Hosts (GET /settings)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/settings?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "settings"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Lấy trạng thái hoạt động của API Key (`active`/`inactive`) và danh sách IP/Tên miền được phép gọi API (`allowed_hosts`)."
+          }
+        },
+        {
+          "name": "1.3. Cập nhật Trạng thái Khóa & Tường lửa Allowed Hosts (POST /settings)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"api_key\": \"{{api_key}}\",\n  \"status\": \"active\",\n  \"allowed_hosts\": \"*\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/settings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "settings"
+              ]
+            },
+            "description": "Bật/tắt khóa API hoặc giới hạn IP/Tên miền được phép thực hiện mã hóa."
+          }
+        },
+        {
+          "name": "1.4. Xem Lịch sử Giao dịch Mã hóa (GET /history)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/history?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "history"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Trả về 30 giao dịch mã hóa gần nhất (`Local CLI Encoder`, `Cloud API`)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Mã Hóa Đám Mây & Đồng Bộ CLI (Cloud & CLI Encoding)",
+      "item": [
+        {
+          "name": "2.1. Tải lên Phân mảnh Mã nguồn ZIP (POST /upload-chunk)",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload_id",
+                  "value": "{{upload_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "chunk",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/upload-chunk",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "upload-chunk"
+              ]
+            },
+            "description": "Tải lên từng phân mảnh (tối đa 10MB/chunk) của tệp `source.zip` chứa mã nguồn `.php`."
+          }
+        },
+        {
+          "name": "2.2. Thực thi Biên dịch Mã hóa Đám mây (POST /cloud-encode)",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload_id",
+                  "value": "{{upload_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/cloud-encode",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cloud-encode"
+              ]
+            },
+            "description": "Biên dịch toàn bộ tệp `.php` trong gói ZIP sang `.cme` và trả về tệp nén `Protected_by_ViniPoly.zip`."
+          }
+        },
+        {
+          "name": "2.3. Khấu trừ Hạn ngạch Mã hóa Cục bộ (POST /deduct-quota)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"api_key\": \"{{api_key}}\",\n  \"file_count\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/deduct-quota",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "deduct-quota"
+              ]
+            },
+            "description": "Endpoint dành cho công cụ `vinipoly` CLI đồng bộ số lượt file đã mã hóa cục bộ."
+          }
+        }
+      ]
+    }
+  ]
+}

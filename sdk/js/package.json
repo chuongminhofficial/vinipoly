@@ -1,0 +1,25 @@
+{
+  "name": "@vinipoly/drm-sdk",
+  "version": "1.1.3",
+  "description": "Official JavaScript/TypeScript Cloud SDK for ViniPoly DRM — Enterprise PHP Source Code Encryption (.cme) & Zero-Disk RAM Execution Platform",
+  "main": "vinipoly_sdk.js",
+  "types": "vinipoly_sdk.d.ts",
+  "files": [
+    "vinipoly_sdk.js",
+    "vinipoly_sdk.d.ts",
+    "README.md"
+  ],
+  "keywords": [
+    "vinipoly",
+    "php-encoder",
+    "drm",
+    "cme",
+    "aes-256-gcm",
+    "ram-execution",
+    "source-protection"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

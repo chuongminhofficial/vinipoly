@@ -1,0 +1,75 @@
+# ============================================================================
+# STRICT SECURITY: NEVER COMMIT PROPRIETARY ENGINE, BACKEND, DECODER OR KEYS
+# BẢO MẬT NGHIÊM NGẶT: CHẶN TUYỆT ĐỐI LÕI RUST/C, BACKEND GO, DECODER & KHÓA PEM
+# ============================================================================
+
+# Proprietary Backend & Admin Portals
+backend/
+server/
+encoder_cli/
+decoder_cli/
+vinipoly_loader/
+target/
+Cargo.lock
+main.go
+vinipoly-backend
+adm-vinipoly.php
+*adm*.php
+*admin*.php
+callback.php
+rebuild.sh
+build_vinipoly.sh
+installer_vinipoly
+vinipoly-encoder
+vinipoly-decoder
+*.so
+*.o
+*.a
+
+# Cryptographic Keys & Licenses (CRITICAL)
+*.pem
+*.key
+*.crt
+*.p12
+*.license
+*.apikey
+*.pempath
+private*
+master*
+
+# Database Dumps & Internal Notes
+*.sql
+*.sql.gz
+*.dump
+*.db
+*.sqlite
+*.txt
+!version.txt
+
+# Environment Variables & Secrets
+.env
+.env.*
+*.env
+!.env.example
+
+# Archives & Build Artifacts
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.bak
+*.swp
+node_modules/
+vendor/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dist/
+build/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

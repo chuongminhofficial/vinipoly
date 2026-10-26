@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "vinipoly-drm-cloud-api-2026-en",
+    "name": "ViniPoly DRM Cloud API (Official Public Collection - EN)",
+    "description": "Official Postman Collection v2.1.0 for integrating ViniPoly DRM (`https://vinipoly.cm.io.vn/api/drm`): Inspect file quota, manage Allowed Hosts firewall, view encoding history, and automate cloud `.php` -> `.cme` compilation.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://vinipoly.cm.io.vn/api/drm",
+      "type": "string",
+      "description": "Base URL for ViniPoly Cloud DRM API"
+    },
+    {
+      "key": "api_key",
+      "value": "VP_your_api_key_here",
+      "type": "string",
+      "description": "Your ViniPoly API Key"
+    },
+    {
+      "key": "upload_id",
+      "value": "VP_DEMO1234",
+      "type": "string",
+      "description": "Chunked Upload Session ID"
+    }
+  ],
+  "item": [
+    {
+      "name": "01. Account Quota, Firewall Settings & Audit History",
+      "item": [
+        {
+          "name": "1.1. Get Account Plan & Remaining Quota (GET /info)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/info?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "info"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Returns active subscription `plan`, remaining file `quota`, key `status`, `hosts` whitelist, and `expire` date."
+          }
+        },
+        {
+          "name": "1.2. Get Security & Allowed Hosts Settings (GET /settings)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/settings?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "settings"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Returns API Key `status` (`active`/`inactive`) and `allowed_hosts` configuration."
+          }
+        },
+        {
+          "name": "1.3. Update Key Status & Allowed Hosts Firewall (POST /settings)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"api_key\": \"{{api_key}}\",\n  \"status\": \"active\",\n  \"allowed_hosts\": \"*\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/settings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "settings"
+              ]
+            },
+            "description": "Enable/disable your API Key or restrict API calls to specific server IPs/domains."
+          }
+        },
+        {
+          "name": "1.4. Get Recent Encoding History (GET /history)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/history?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "history"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Returns the latest 30 encoding transactions (`Local CLI Encoder` and `Cloud API`)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Cloud Compilation & CLI Quota Sync",
+      "item": [
+        {
+          "name": "2.1. Upload Source ZIP Chunk (POST /upload-chunk)",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload_id",
+                  "value": "{{upload_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "chunk",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/upload-chunk",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "upload-chunk"
+              ]
+            },
+            "description": "Uploads a binary chunk (up to 10MB per chunk) of your PHP project ZIP archive."
+          }
+        },
+        {
+          "name": "2.2. Trigger Cloud Rust Encryption (POST /cloud-encode)",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload_id",
+                  "value": "{{upload_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/cloud-encode",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cloud-encode"
+              ]
+            },
+            "description": "Compiles all `.php` files in the uploaded archive into `.cme` format and returns `Protected_by_ViniPoly.zip`."
+          }
+        },
+        {
+          "name": "2.3. Deduct Local CLI Encoding Quota (POST /deduct-quota)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"api_key\": \"{{api_key}}\",\n  \"file_count\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/deduct-quota",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "deduct-quota"
+              ]
+            },
+            "description": "Used by the local `vinipoly` CLI to synchronize quota after local compilation."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+MIT License (Official Public Client SDKs, Server Configs & Integration Examples)
+
+Copyright (c) 2026 ViniPoly DRM — Chương Minh® Studio (https://vinipoly.cm.io.vn)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Client Suite"), to deal
+in the Client Suite without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Client Suite, and to permit persons to whom the Client Suite is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Client Suite.
+
+THE CLIENT SUITE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE CLIENT SUITE OR THE USE OR OTHER DEALINGS IN THE
+CLIENT SUITE.
+
+-------------------------------------------------------------------------------
+PROPRIETARY CORE ENGINE NOTICE / LƯU Ý BẢN QUYỀN LÕI MÃ HÓA:
+The ViniPoly Rust Core Encoder (`vinipoly-encoder`), Zend PHP Extension (`vinipoly.so`),
+C-Wrapper Binary Installer (`installer_vinipoly`), and ViniPoly Cloud DRM Gateway
+(`https://vinipoly.cm.io.vn`) are proprietary commercial software of Chương Minh® Studio.
+Decompilation, reverse engineering, or unauthorized redistribution of `.so` or binary
+modules is strictly prohibited.
