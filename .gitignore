@@ -1,74 +1,84 @@
 # ============================================================================
-# STRICT SECURITY: NEVER COMMIT PROPRIETARY ENGINE, BACKEND, DECODER OR KEYS
-# BẢO MẬT NGHIÊM NGẶT: CHẶN TUYỆT ĐỐI LÕI RUST/C, BACKEND GO, DECODER & KHÓA PEM
+# STRICT SECURITY: NEVER COMMIT PROPRIETARY ENGINE SOURCE, BACKEND OR KEYS
 # ============================================================================
 
-# Proprietary Backend & Admin Portals
+# Proprietary Engine & Backend Source Code
 backend/
+backend_go/
 server/
 encoder_cli/
 decoder_cli/
 vinipoly_loader/
+web_portal/
+database/
+keys/
+installer/
 target/
+Cargo.toml
 Cargo.lock
+*.c
+*.h
+*.rs
+*.m4
 main.go
 vinipoly-backend
 adm-vinipoly.php
+client-vinipoly.php
 *adm*.php
 *admin*.php
 callback.php
+setup_master_env.sh
 rebuild.sh
 build_vinipoly.sh
-installer_vinipoly
-vinipoly-encoder
-vinipoly-decoder
-*.so
 *.o
+*.lo
+*.la
 *.a
 
-# Cryptographic Keys & Licenses (CRITICAL)
+# Cryptographic Keys, Passkeys & Licenses (CRITICAL)
 *.pem
 *.key
 *.crt
 *.p12
 *.license
 *.apikey
+*.passkey
+*.hosts
 *.pempath
 private*
-master*
 
-# Database Dumps & Internal Notes
+# Database Dumps & Environment Secrets
 *.sql
 *.sql.gz
 *.dump
 *.db
 *.sqlite
-*.txt
-!version.txt
-
-# Environment Variables & Secrets
 .env
 .env.*
 *.env
 !.env.example
 
-# Archives & Build Artifacts
+# Allow Official Precompiled Public Distribution Artifacts
+!installer_vinipoly
+!bin/
+!bin/vinipoly-encoder
+!bin/vinipoly-decoder
+!release-so/
+!release-so/php*/
+!release-so/php*/vinipoly.so
+!version.txt
+!SHA256SUMS.txt
+!release.manifest.json
+
+# OS & Editor Junk
 *.zip
-*.tar
 *.tar.gz
-*.tgz
-*.rar
-*.7z
 *.bak
 *.swp
 node_modules/
 vendor/
 __pycache__/
-*.py[cod]
 .venv/
-venv/
-dist/
-build/
 .idea/
 .vscode/
 .DS_Store

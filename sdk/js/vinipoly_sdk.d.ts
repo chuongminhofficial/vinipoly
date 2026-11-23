@@ -1,11 +1,11 @@
 /**
- * TypeScript Definitions for ViniPoly DRM Official Cloud SDK (v1.1.3)
+ * TypeScript Definitions for ViniPoly DRM Official Cloud SDK (v3.0.0)
  */
 
 export interface ViniPolyClientConfig {
   /** ViniPoly API Key (e.g. 'VP_...') */
   apiKey: string;
-  /** Cloud DRM Gateway URL (default: 'https://vinipoly.cm.io.vn/api/drm') */
+  /** Cloud DRM Gateway URL (default: 'https://api.l.lc/vinipoly/api/drm') */
   baseUrl?: string;
   /** Request timeout in milliseconds (default: 30000) */
   timeoutMs?: number;

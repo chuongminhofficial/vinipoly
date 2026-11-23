@@ -1,180 +1,102 @@
 <div align="center">
 
-# 🛡️ ViniPoly DRM — Nền Tảng Mã Hóa Bảo Vệ Mã Nguồn PHP & Thực Thi Trực Tiếp Trong RAM
+# 🛡️ ViniPoly DRM v3.0
+### Nền Tảng Mã Hóa Mã Nguồn PHP, Thực Thi 100% Trên RAM & Bảo Vệ Luồng Payload Thời Gian Thực
 
-**Mã Hóa Quân Sự AES-256-GCM (`.php` $\rightarrow$ `.cme`), Giải Mã Thực Thi 100% Trong RAM (Zero-Disk Zend Extension) & Bộ SDK Đám Mây Đa Ngôn Ngữ**
+[![Phiên bản](https://img.shields.io/badge/Phiên%20bản-v3.0.0-0EA5E9?style=flat-square)](release.manifest.json)
+[![Hỗ trợ PHP](https://img.shields.io/badge/PHP-7.3%20–%208.5%20(Native%20.so)-6366F1?style=flat-square)](#2-tải-trực-tiếp-binary-raw-linux-x86_64)
+[![Web Servers](https://img.shields.io/badge/Web%20Servers-Nginx%20%7C%20Apache%20%7C%20OpenLiteSpeed-10B981?style=flat-square)](#4-cấu-hình-web-server--url-rút-gọn)
+[![Hệ điều hành](https://img.shields.io/badge/Nền%20tảng-Linux%20x86__64-0F172A?style=flat-square)](#1-cài-đặt-nhanh-1-dòng-lệnh-linux-x86_64)
+[![Phát triển bởi](https://img.shields.io/badge/Bởi-Chương%20Minh%20Studio-38BDF8?style=flat-square)](https://chuongminh.com/vinipoly)
 
-[![Phiên bản CLI](https://img.shields.io/badge/CLI%20Console-v1.1.3-0A66C2?style=flat-square)](#3-cài-đặt-nhanh-trên-máy-chủ-linux-1-dòng-lệnh-duy-nhất)
-[![Lõi Hệ Thống](https://img.shields.io/badge/Core%20Engine-v2.5.0%20Production-10B981?style=flat-square)](#)
-[![Hỗ trợ PHP](https://img.shields.io/badge/PHP-7.3%20--%208.3%20(Zend%20.so)-6366F1?style=flat-square)](#1-kiến-trúc-bảo-mật-cốt-lõi)
-[![Web Servers](https://img.shields.io/badge/Web%20Servers-Nginx%20%7C%20Apache%20%7C%20OpenLiteSpeed-F59E0B?style=flat-square)](#2-cấu-trúc-kho-lưu-trữ)
-[![Giấy phép: MIT](https://img.shields.io/badge/SDK%20License-MIT-22C55E?style=flat-square)](LICENSE)
-
-**[🇬🇧 English Documentation](README.md)** · **[🇻🇳 Tài Liệu Tiếng Việt](README.vi.md)** · **[📘 Full Integration Guide (EN)](docs/en/INTEGRATION_GUIDE.md)** · **[📗 Tài Liệu Tích Hợp (VI)](docs/vi/INTEGRATION_GUIDE.md)** · **[🚀 Bộ Sưu Tập Postman](postman/)**
+**[🇻🇳 Tài Liệu Tiếng Việt](README.vi.md)** · **[🇬🇧 English Documentation](README.md)** · **[📦 Kiểm Tra SHA-256](SHA256SUMS.txt)** · **[📜 Release Manifest](release.manifest.json)** · **[📗 Hướng Dẫn Tích Hợp](docs/vi/INTEGRATION_GUIDE.md)**
 
 </div>
 
-## Giới Thiệu Tổng Quan
+---
 
-Chào mừng bạn đến với kho lưu trữ GitHub công khai chính thức của **ViniPoly DRM** (phát triển bởi **Chương Minh® Studio**). ViniPoly DRM là nền tảng mã hóa bảo vệ bản quyền mã nguồn PHP chuyên nghiệp cấp doanh nghiệp, giúp chống đánh cắp mã nguồn, chống dịch ngược (anti-decompilation) và kiểm soát giấy phép triển khai cho các hệ thống SaaS, Website thương mại, WordPress Plugin/Theme và ứng dụng Laravel/Symfony.
+## Giới thiệu
 
-Khác biệt hoàn toàn với các công cụ làm rối mã (obfuscator) truyền thống hay các trình mã hóa tạo tệp tạm trên ổ cứng, **ViniPoly DRM** biên dịch và mã hóa tệp `.php` sang định dạng nhị phân **`.cme` (Chương Minh Encrypted)** bằng thuật toán **AES-256-GCM**, sau đó giải mã và thực thi **100% trực tiếp trong bộ nhớ RAM** thông qua Zend Extension (`vinipoly.so`) viết bằng C/Rust.
+**ViniPoly DRM v3.0** (phát triển bởi **Chương Minh® Studio**) là hệ sinh thái bảo vệ bản quyền phần mềm thương mại, mã hóa mã nguồn PHP (`.php` → `.cme`) và bảo vệ kênh truyền dữ liệu thời gian thực dành cho các nền tảng SaaS, cổng thanh toán/SSO, hệ thống Laravel/Symfony, WordPress và ứng dụng doanh nghiệp.
 
-> **Lưu ý Kiến trúc & Bảo mật**: Kho lưu trữ công khai này cung cấp **Bộ SDK Đám Mây Chính Thức (JS/TS, PHP, Python, Go), Trình điều khiển CLI dành cho khách hàng, Cấu hình mẫu Web Server, Bộ kiểm thử thực thi RAM và Postman Collection**. Lõi biên dịch Rust (`vinipoly-encoder`), Zend Extension (`vinipoly.so`) và Cổng Cloud DRM (`https://vinipoly.cm.io.vn`) là tài sản phần mềm thương mại độc quyền của Chương Minh® Studio.
+Khác hoàn toàn với các công cụ làm rối mã truyền thống, **ViniPoly v3.0** đóng gói tệp PHP sang định dạng nhị phân xác thực **`CM_ENC v3` (`.cme`)** với bộ khóa độc lập trên từng tệp và nạp thẳng **100% vào bộ nhớ Zend Engine RAM** thông qua nhân C gốc (`vinipoly.so`) — **không dùng `eval()`**, **không sinh tệp tạm trên ổ cứng**, và **không can thiệp hay làm sai lệch bất kỳ tính năng PHP nào**.
 
-## 1. Kiến Trúc Bảo Mật Cốt Lõi
+---
 
-* **Thực Thi 100% Trong RAM (Zero-Disk Execution — `vinipoly.so`)**: Toàn bộ quá trình giải mã và nạp Opcode vào Zend Engine diễn ra hoàn toàn trong RAM, tuyệt đối không ghi bất kỳ dữ liệu mã nguồn `.php` giải mã nào ra đĩa cứng.
-* **Cơ Chế Bảo Vệ Khóa Kép (`AES-256-GCM` + Dual-Key Binding)**:
-  * **Khóa API Đám Mây (`VP_...`)**: Xác thực quyền mã hóa của lập trình viên với cổng Cloud DRM (`https://vinipoly.cm.io.vn/api/drm`) kèm tường lửa giới hạn IP/Tên miền (`Allowed Hosts`).
-  * **Khóa Giấy Phép Cục Bộ (`REC_...` — Recovery License Key)**: Lưu tại `/www/server/vinipoly.license` (`chmod 644`) trên máy chủ đích để cấp quyền cho lõi `vinipoly.so` giải mã thực thi tệp `.cme` trong RAM.
-* **Frontend Cloaking & Tối Ưu Hóa SEO Tuyệt Đối**: Bảo vệ mã nguồn đầu ra nhưng vẫn thân thiện 100% với Googlebot và các công cụ tìm kiếm.
-* **Tương Thích Đa Nền Tảng**:
-  * **Phiên bản PHP**: Hỗ trợ đầy đủ PHP `7.3`, `7.4`, `8.0`, `8.1`, `8.2`, `8.3` (`php-fpm`, `php-cli`, `lsphp`).
-  * **Web Server**: Tự động định tuyến `.cme` trên **Nginx**, **Apache**, **OpenLiteSpeed** và **aaPanel**.
+## 1. Cài Đặt Nhanh 1 Dòng Lệnh (Linux x86_64)
 
-## 2. Cấu Trúc Kho Lưu Trữ
-
-```text
-vinipoly-drm/
-├── cli/
-│   └── install-public.sh                        # Trình cài đặt & Bảng điều khiển ViniPoly CLI cho Linux (v1.1.3)
-├── configs/
-│   ├── apache/.htaccess                         # Cấu hình ẩn đuôi .cme & định tuyến URL sạch cho Apache/OLS
-│   ├── nginx/vinipoly-cme.conf                  # Cấu hình Nginx FastCGI chạy song song .php và .cme
-│   └── php/.user.ini.example                    # Cấu hình mẫu open_basedir tương thích ViniPoly
-├── docs/
-│   ├── en/INTEGRATION_GUIDE.md                  # Tài liệu tích hợp & Tham chiếu API chi tiết (Tiếng Anh)
-│   └── vi/INTEGRATION_GUIDE.md                  # Tài liệu tích hợp & Tham chiếu API chi tiết (Tiếng Việt)
-├── examples/
-│   ├── php-ram-test/                            # Bộ kiểm thử thực thi RAM (source_test.php & testcore.php)
-│   ├── js_quickstart.js                         # Ví dụ tích hợp nhanh Node.js / TypeScript SDK
-│   ├── php_quickstart.php                       # Ví dụ tích hợp nhanh PHP SDK
-│   ├── python_quickstart.py                     # Ví dụ tích hợp nhanh Python SDK
-│   └── go_quickstart.go                         # Ví dụ tích hợp nhanh Go SDK
-├── postman/
-│   ├── vinipoly_drm_postman_collection.en.json  # Postman Collection v2.1.0 (Bản Tiếng Anh)
-│   └── vinipoly_drm_postman_collection.vi.json  # Postman Collection v2.1.0 (Bản Tiếng Việt)
-├── sdk/
-│   ├── js/                                      # JavaScript / TypeScript SDK (vinipoly_sdk.js + .d.ts)
-│   ├── php/                                     # PHP 7.4/8.x SDK (ViniPolySDK.php + composer.json)
-│   ├── python/                                  # Python 3.8+ SDK (vinipoly_sdk.py - Không phụ thuộc thư viện ngoài)
-│   └── go/                                      # Go 1.18+ SDK (vinipoly_sdk.go + go.mod)
-├── README.md                                    # Tài liệu giới thiệu chính (Tiếng Anh - Mặc định GitHub)
-├── README.vi.md                                 # Tài liệu giới thiệu chính (Tiếng Việt)
-├── SECURITY.md                                  # Chính sách bảo mật song ngữ
-├── CONTRIBUTING.md                              # Hướng dẫn đóng góp song ngữ
-├── CHANGELOG.md                                 # Lịch sử phiên bản
-└── LICENSE                                      # Giấy phép MIT (Dành cho bộ Client SDK & Configs)
-```
-
-## 3. Cài Đặt Nhanh Trên Máy Chủ Linux (1 Dòng Lệnh Duy Nhất)
-
-Chạy câu lệnh duy nhất dưới đây với quyền `root` trên máy chủ VPS/Server Linux (Ubuntu, Debian, CentOS, AlmaLinux sử dụng aaPanel) để tự động cài đặt ViniPoly CLI, gắn giáp bảo mật `vinipoly.so` cho mọi phiên bản PHP (`7.3`–`8.3`) và định tuyến Web Server:
+Cài đặt trình điều khiển thông minh **ViniPoly v3.0** (`/usr/local/bin/vinipoly`), tự động nhận diện mọi phiên bản PHP (`7.3` đến `8.5`) và cấu hình đồng bộ Nginx / Apache / OpenLiteSpeed:
 
 ```bash
-curl -s -O https://cdn.chgm.in/install/v1.1.3/installer_vinipoly && chmod +x installer_vinipoly && ./installer_vinipoly
+curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/installer_vinipoly -o /usr/local/bin/vinipoly && chmod +x /usr/local/bin/vinipoly && vinipoly
 ```
 
-Sau khi cài đặt xong, bất cứ lúc nào bạn chỉ cần gõ lệnh `vinipoly` trên Terminal để mở Bảng điều khiển trung tâm:
+### Tải trực tiếp Bộ Mã Hóa & Giải Mã CLI (Raw Binary)
 
-| Phím | Chức năng trên Console | Mô tả chi tiết |
-| :---: | :--- | :--- |
-| **`[1]`** | **Cài đặt lại Lõi PHP (Install Core)** | Tự động quét `/www/server/php/*` (PHP 7.3–8.3), tải `vinipoly.so` từ CDN và khởi động lại `php-fpm` / `lsphp`. |
-| **`[2]`** | **Quản lý Khóa (Key Management)** | Cập nhật `Recovery Key` (`/www/server/vinipoly.license`) hoặc `API Key` (`/www/server/vinipoly.apikey`). |
-| **`[3]`** | **Mã hóa Dự án (Smart Local Encoder)** | Tự động quét thư mục dự án (bỏ qua `vendor/`, `node_modules/`), kiểm tra hạn ngạch, mã hóa `.php` $\rightarrow$ `.cme` cục bộ siêu tốc và hỗ trợ dọn dẹp file `.php` gốc. |
-| **`[4]`** | **Kiểm tra trạng thái máy chủ (Services)** | Kiểm tra trạng thái Nginx/Apache/OpenLiteSpeed, lõi `.so` trên từng bản PHP và tự động sửa quyền file giấy phép (`644`). |
-| **`[5]`** | **Tra cứu thông tin API Key (Cloud Info)** | Kết nối Cloud hiển thị Gói dịch vụ, Hạn ngạch còn lại, Tường lửa Allowed Hosts và Ngày hết hạn. |
-| **`[6]`** | **Cập nhật ViniPoly (Auto-Update)** | Kiểm tra và nâng cấp tự động trình điều khiển `vinipoly` lên phiên bản mới nhất từ CDN. |
-| **`[7]`** | **Định tuyến lại Web Server** | Cấu hình tự động Nginx, Apache và OpenLiteSpeed để chạy trực tiếp đuôi `.cme`. |
-
-## 4. Hướng Dẫn Sử Dụng Bộ SDK Đám Mây (4 Ngôn Ngữ)
-
-### 4.1. JavaScript / TypeScript (`sdk/js/vinipoly_sdk.js`)
-```javascript
-const { ViniPolyClient } = require('./sdk/js/vinipoly_sdk.js');
-
-const client = new ViniPolyClient({
-  apiKey: process.env.VINIPOLY_API_KEY || 'VP_your_api_key_here',
-});
-
-// 1. Kiểm tra hạn ngạch (Quota) & gói dịch vụ
-const info = await client.getAccountInfo();
-console.log(`Gói: ${info.plan.toUpperCase()} | Còn lại: ${info.quota} files`);
-
-// 2. Tự động cắt chunk 10MB, tải lên Cloud và nhận về file ZIP đã mã hóa (.cme)
-await client.encodeProjectZip('./dist/source.zip', './dist/Protected_by_ViniPoly.zip');
+```bash
+curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-encoder -o /usr/local/bin/vinipoly-encoder && chmod +x /usr/local/bin/vinipoly-encoder
+curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-decoder -o /usr/local/bin/vinipoly-decoder && chmod +x /usr/local/bin/vinipoly-decoder
 ```
 
-### 4.2. PHP (`sdk/php/ViniPolySDK.php`)
-```php
-<?php
-require_once __DIR__ . '/sdk/php/ViniPolySDK.php';
+### Cài thủ công tệp `.so` cho từng bản PHP (Ví dụ: PHP 8.3)
 
-use ViniPolyDRM\ViniPolyClient;
-
-$client = new ViniPolyClient(getenv('VINIPOLY_API_KEY') ?: 'VP_your_api_key_here');
-
-$info = $client->getAccountInfo();
-echo "Hạn ngạch còn lại: {$info['quota']} files\n";
-
-// Mã hóa gói ZIP dự án trên đám mây và lưu thành Protected_by_ViniPoly.zip
-$client->encodeProjectZip(__DIR__ . '/source.zip', __DIR__ . '/Protected_by_ViniPoly.zip');
+```bash
+EXT_DIR=$(php-config --extension-dir)
+curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php83/vinipoly.so -o "${EXT_DIR}/vinipoly.so"
+chmod 755 "${EXT_DIR}/vinipoly.so"
 ```
 
-### 4.3. Python (`sdk/python/vinipoly_sdk.py`)
-```python
-from sdk.python.vinipoly_sdk import ViniPolyClient
+---
 
-client = ViniPolyClient(api_key="VP_your_api_key_here")
+## 2. Tải Trực Tiếp Binary Raw (Linux x86_64)
 
-info = client.get_account_info()
-print(f"Gói: {info['plan']} | Hạn ngạch: {info['quota']} files")
+Toàn bộ tệp thực thi chính thức được lưu trữ dưới dạng **Git Raw Binary nguyên bản (không qua Git LFS)**, cho phép tải trực tiếp tốc độ cao bằng `curl` / `wget` trên mọi máy chủ sản xuất và CI/CD.
 
-# Tải lên theo từng phần (Chunked) & mã hóa sang .cme trên Cloud
-client.encode_project_zip("source.zip", "Protected_by_ViniPoly.zip")
-```
+| Thành phần | Mô tả & Phiên bản đích | Dung lượng | SHA-256 (Rút gọn) | Tải Trực Tiếp (Raw) |
+| :--- | :--- | :---: | :---: | :--- |
+| **`installer_vinipoly`** | Trình cài đặt & Điều khiển thông minh | 48.2 KB | `3ecd7625f12f887f…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/installer_vinipoly) |
+| **`bin/vinipoly-encoder`** | Bộ mã hóa Rust VPC3 & AST CLI | 8.34 MB | `ec520eba7cc32617…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-encoder) |
+| **`bin/vinipoly-decoder`** | Bộ khôi phục mã nguồn chính chủ CLI | 8.40 MB | `b8ca185264e809f3…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-decoder) |
+| **`release-so/php73/vinipoly.so`** | Nhân Zend thực thi RAM — **PHP 7.3** | 413.5 KB | `69d7e0b20adc2b93…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php73/vinipoly.so) |
+| **`release-so/php74/vinipoly.so`** | Nhân Zend thực thi RAM — **PHP 7.4** | 412.7 KB | `cfe0e8178c0a845f…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php74/vinipoly.so) |
+| **`release-so/php80/vinipoly.so`** | Nhân Zend thực thi RAM — **PHP 8.0** | 411.9 KB | `aa84c298bff392ff…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php80/vinipoly.so) |
+| **`release-so/php81/vinipoly.so`** | Nhân Zend thực thi RAM — **PHP 8.1** | 414.1 KB | `cbff8be3467cf548…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php81/vinipoly.so) |
+| **`release-so/php82/vinipoly.so`** | Nhân Zend thực thi RAM — **PHP 8.2** | 417.6 KB | `35ebb6d7d4227918…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php82/vinipoly.so) |
+| **`release-so/php83/vinipoly.so`** | Nhân Zend thực thi RAM — **PHP 8.3** | 418.0 KB | `3aa93bb17d4da660…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php83/vinipoly.so) |
+| **`release-so/php84/vinipoly.so`** | Nhân Zend thực thi RAM — **PHP 8.4** | 421.9 KB | `d88746198942c8ae…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php84/vinipoly.so) |
+| **`release-so/php85/vinipoly.so`** | Nhân Zend thực thi RAM — **PHP 8.5** | 422.8 KB | `582e5c811c15f951…` | [Tải Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php85/vinipoly.so) |
 
-### 4.4. Go (`sdk/go/vinipoly_sdk.go`)
-```go
-package main
+> **Kiểm tra toàn vẹn SHA-256**:
+> ```bash
+> curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/SHA256SUMS.txt | sha256sum -c --ignore-missing
+> ```
 
-import (
-	"context"
-	"fmt"
-	vinipolysdk "github.com/vinipoly-drm/vinipoly-sdk/sdk/go"
-)
+---
 
-func main() {
-	client, _ := vinipolysdk.NewClient(vinipolysdk.Config{
-		APIKey: "VP_your_api_key_here",
-	})
-	ctx := context.Background()
+## 3. Điểm Mới Trong ViniPoly v3.0
 
-	info, _ := client.GetAccountInfo(ctx)
-	fmt.Printf("Gói: %s | Hạn ngạch: %d files\n", info.Plan, info.Quota)
+- **Thực thi Nhân C Gốc 100% Không `eval()` (`vinipoly.so`)**: Biên dịch trực tiếp opcode trên RAM cho toàn dải **PHP 7.3 – 8.5** với tốc độ tương đương PHP thuần.
+- **Tương thích Trong Suốt 100% Hệ Sinh Thái PHP**: Tự động ánh xạ `require`, `include`, Composer PSR-4 Autoloader, `file_exists()`, `is_file()` và `is_readable()` từ `.php` sang `.cme` mà không cần sửa đổi mã nguồn gốc.
+- **Mã Hóa Hằng Số Nhạy Cảm Bằng Bộ Phân Tích AST (`vinipoly-encoder`)**: Tự động niêm phong chuỗi kết nối DB, mật khẩu, khóa API/JWT/Webhook vào kho khóa riêng từng tệp; tự động giữ nguyên tài nguyên tĩnh (`.js`, `.css`, `.png`, `.json`, `.htaccess`), Heredoc/Nowdoc, `declare(strict_types=1)` và PHP 8 Attributes/Enums.
+- **Bảo Vệ Luồng Payload 2 Chiều & Ẩn Cấu Trúc HTML**: Mã hóa thông minh kênh `fetch` / `XMLHttpRequest` mà không gây xung đột với OAuth2, Webhook, Cloudflare Turnstile hay SDK bên thứ ba.
+- **Lớp Phủ F12 Không Khung Viền — Đa Ngôn Ngữ & Hỗ Trợ RTL**: Thiết kế Midnight Horizon hiện đại trong `Closed Shadow DOM`, tích hợp sẵn **11 ngôn ngữ** kèm chế độ **RTL gốc** (Ả Rập, Ba Tư, Do Thái), tự động khôi phục phiên làm việc tức thì không tải lại trang.
+- **Xác Thực Bot Tìm Kiếm FCrDNS Chuẩn SEO**: Đảm bảo Googlebot, Bingbot, Applebot thu thập đầy đủ dữ liệu SEO đồng thời chặn giả mạo User-Agent.
+- **Khôi Phục Nguyên Bản 100% (`vinipoly-decoder`)**: Khôi phục chính xác từng bit từ `.cme` về `.php` bằng License Key chính chủ ngay cả khi đã xoay vòng API Key.
 
-	_ = client.EncodeProjectZip(ctx, "source.zip", "Protected_by_ViniPoly.zip")
-}
-```
+---
 
-## 5. Bảng Tham Chiếu Cloud DRM API (`https://vinipoly.cm.io.vn/api/drm`)
+## 4. Cấu Hình Web Server & URL Rút Gọn
 
-| STT | Phương thức & Đường dẫn | Xác thực | Tham số / Body | Chức năng |
-| :---: | :--- | :--- | :--- | :--- |
-| 01 | `GET /api/drm/info` | `?api_key=VP_...` | Query `api_key` | Tra cứu gói cước (`plan`), số lượt còn lại (`quota`), trạng thái (`status`), `hosts` và hạn dùng (`expire`). |
-| 02 | `GET /api/drm/settings` | `?api_key=VP_...` | Query `api_key` | Lấy trạng thái khóa (`active`/`inactive`) và danh sách IP/Tên miền trong `allowed_hosts`. |
-| 03 | `POST /api/drm/settings` | JSON `api_key` | `{"api_key", "status", "allowed_hosts"}` | Bật/tắt khóa API và cập nhật danh sách tường lửa `Allowed Hosts` (`*` hoặc danh sách IP/Domain). |
-| 04 | `GET /api/drm/history` | `?api_key=VP_...` | Query `api_key` | Lấy lịch sử 30 giao dịch mã hóa gần nhất (`Local CLI Encoder`, `Cloud API`). |
-| 05 | `POST /api/drm/deduct-quota` | JSON `api_key` | `{"api_key", "file_count"}` | Khấu trừ hạn ngạch khi thực hiện mã hóa cục bộ qua công cụ `vinipoly` CLI. |
-| 06 | `POST /api/drm/upload-chunk` | Multipart Form | `upload_id`, `chunk` (10MB) | Tải lên từng phân mảnh (Chunk) của gói ZIP mã nguồn lên không gian xử lý đám mây. |
-| 07 | `POST /api/drm/cloud-encode` | Multipart Form | `upload_id`, `api_key` | Kiểm tra tường lửa `Allowed Hosts` & hạn ngạch, biên dịch `.php` $\rightarrow$ `.cme` và trả về file `Protected_by_ViniPoly.zip`. |
+Lệnh `vinipoly` tự động cấu hình trọn gói cho **aaPanel**, **OzonPanel**, **Ubuntu/Debian**, **CentOS/AlmaLinux/RHEL**, **Nginx**, **Apache 2.4** và **OpenLiteSpeed / LiteSpeed Enterprise**.
 
-## 6. Các Gói Dịch Vụ & Chính Sách Bảo Vệ Quyền Lợi Khách Hàng
+Các mẫu cấu hình thủ công nằm tại thư mục [`configs/`](configs/):
+- **Apache / OpenLiteSpeed `.htaccess`**: [`configs/apache/.htaccess`](configs/apache/.htaccess)
+- **Nginx FastCGI**: [`configs/nginx/vinipoly-cme.conf`](configs/nginx/vinipoly-cme.conf)
+- **OpenLiteSpeed Vhost**: [`configs/openlitespeed/vhost-cme.conf`](configs/openlitespeed/vhost-cme.conf)
 
-* **Các gói định mức**: **Trial** (`3 files`), **Free** (`30 files`), **Pro** (`150 files`), **Enterprise** (`520 files`) và **Pay-To-Go** (`Cộng dồn lượt vĩnh viễn không giới hạn thời gian`).
-* **Chính sách Cứu hộ & Tự động Hoàn bù Hạn ngạch (Auto-Refund Quota)**: Trong trường hợp khách hàng gặp sự cố mất mã nguồn gốc và yêu cầu hỗ trợ khôi phục chính chủ từ quản trị viên, hệ thống sẽ tự động **hoàn bù lại đúng 100% số lượt mã hóa** vào tài khoản và cấp mới khóa `Recovery Key` an toàn để khách hàng mã hóa lại dự án mà không phát sinh thêm chi phí.
+---
 
-## Giấy Phép (License)
+## Bản Quyền & Liên Hệ
 
-Bộ thư viện Client SDK, cấu hình mẫu Web Server và ví dụ tích hợp trong kho lưu trữ này được phát hành theo giấy phép [MIT License](LICENSE).
+- **Sản phẩm**: ViniPoly DRM Enterprise v3.0 — © **Chương Minh® Studio** ([https://chuongminh.com/vinipoly](https://chuongminh.com/vinipoly))
+- **SDK & Cấu hình mẫu**: Giấy phép MIT ([LICENSE](LICENSE)). Các tệp thực thi `vinipoly.so`, `vinipoly-encoder`, `vinipoly-decoder` và `installer_vinipoly` là phần mềm thương mại thuộc bản quyền Chương Minh® Studio.

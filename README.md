@@ -1,187 +1,130 @@
 <div align="center">
 
-# 🛡️ ViniPoly DRM — Enterprise PHP Source Code Encryption & Zero-Disk RAM Execution Platform
+# 🛡️ ViniPoly DRM v3.0
+### Enterprise PHP Source Protection, Zero-Disk RAM Execution & Real-Time Payload Vault
 
-**Military-Grade AES-256-GCM Source Protection (`.php` $\rightarrow$ `.cme`), Native Zend Extension RAM Execution & Cloud CI/CD SDK Suite**
+[![Release](https://img.shields.io/badge/Release-v3.0.0-0EA5E9?style=flat-square)](release.manifest.json)
+[![PHP Support](https://img.shields.io/badge/PHP-7.3%20–%208.5%20(Native%20.so)-6366F1?style=flat-square)](#2-direct-raw-binary-downloads-linux-x86_64)
+[![Web Servers](https://img.shields.io/badge/Web%20Servers-Nginx%20%7C%20Apache%20%7C%20OpenLiteSpeed-10B981?style=flat-square)](#4-web-server--clean-url-routing)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20x86__64-0F172A?style=flat-square)](#1-one-line-quick-install-linux-x86_64)
+[![Vendor](https://img.shields.io/badge/By-Chương%20Minh%20Studio-38BDF8?style=flat-square)](https://chuongminh.com/vinipoly)
 
-[![CLI Version](https://img.shields.io/badge/CLI%20Console-v1.1.3-0A66C2?style=flat-square)](#2-one-line-linux-server-installation-vinipoly-cli)
-[![Core Engine](https://img.shields.io/badge/Core%20Engine-v2.5.0%20Production-10B981?style=flat-square)](#)
-[![PHP Support](https://img.shields.io/badge/PHP-7.3%20--%208.3%20(Zend%20.so)-6366F1?style=flat-square)](#1-core-security-architecture)
-[![Web Servers](https://img.shields.io/badge/Web%20Servers-Nginx%20%7C%20Apache%20%7C%20OpenLiteSpeed-F59E0B?style=flat-square)](#3-web-server--clean-url-routing-cme)
-[![License: MIT](https://img.shields.io/badge/SDK%20License-MIT-22C55E?style=flat-square)](LICENSE)
-
-**[🇬🇧 English Documentation](README.md)** · **[🇻🇳 Tài Liệu Tiếng Việt](README.vi.md)** · **[📘 Full Integration Guide (EN)](docs/en/INTEGRATION_GUIDE.md)** · **[📗 Tài Liệu Tích Hợp (VI)](docs/vi/INTEGRATION_GUIDE.md)** · **[🚀 Postman Collections](postman/)**
+**[🇻🇳 Tài Liệu Tiếng Việt](README.vi.md)** · **[🇬🇧 English Documentation](README.md)** · **[📦 SHA-256 Checksums](SHA256SUMS.txt)** · **[📜 Release Manifest](release.manifest.json)** · **[📘 Integration Guide](docs/en/INTEGRATION_GUIDE.md)**
 
 </div>
 
+---
+
 ## Overview
 
-Welcome to the official public developer repository for **ViniPoly DRM** (developed by **Chương Minh® Studio**). ViniPoly DRM is an enterprise-grade PHP source code protection and digital rights management ecosystem designed to eliminate unauthorized source code theft, reverse engineering, and license tampering when distributing commercial PHP applications, SaaS platforms, WordPress themes/plugins, and Laravel/Symfony systems.
+**ViniPoly DRM v3.0** (by **Chương Minh® Studio**) is a commercial-grade PHP intellectual property protection, source code encryption (`.php` → `.cme`), and runtime payload security platform built for SaaS vendors, enterprise portals, payment/SSO gateways, Laravel/Symfony applications, and WordPress ecosystems.
 
-Unlike legacy obfuscators that merely scramble variable names or write temporary decrypted files to `/tmp`, **ViniPoly DRM** compiles and encrypts `.php` source files into binary **`.cme` (Chương Minh Encrypted)** payloads using **AES-256-GCM** and executes them **100% directly in RAM** via the native C/Rust Zend Extension (`vinipoly.so`).
+Unlike traditional obfuscators that scramble text or write temporary files to disk, **ViniPoly v3.0** compiles PHP projects into authenticated **`CM_ENC v3` (`.cme`)** containers with per-file cryptographic keys and executes them **100% directly in Zend Engine RAM** via the native C extension (`vinipoly.so`) — with **zero `eval()`**, **zero disk residue**, and **100% native PHP compatibility**.
 
-> **Security & Architecture Note**: This public repository contains the **Official Cloud DRM SDKs (JS/TS, PHP, Python, Go), Sanitized Server CLI Console, Web Server Configuration Templates, RAM Execution Test Suite, and Postman Collections**. The underlying Rust Core Encoder (`vinipoly-encoder`), Zend Extension (`vinipoly.so`), and Cloud DRM Gateway (`https://vinipoly.cm.io.vn`) are proprietary commercial software.
+---
 
-## 1. Core Security Architecture
+## 1. One-Line Quick Install (Linux x86_64)
 
-* **Zero-Disk In-Memory Execution (`vinipoly.so`)**: Decryption and Zend opcode execution occur entirely inside volatile memory (RAM). Zero plaintext PHP code is ever written to the hard drive or swap space.
-* **Military-Grade Cryptographic Envelope (`AES-256-GCM` + Dual-Key Binding)**:
-  * **Cloud API Key (`VP_...`)**: Authenticates your encoding requests against the ViniPoly Cloud DRM Gateway (`https://vinipoly.cm.io.vn/api/drm`) and enforces IP/Domain firewall rules (`Allowed Hosts`).
-  * **Local Recovery License Key (`REC_...`)**: Stored locally at `/www/server/vinipoly.license` (`chmod 644`) on your target server to authorize real-time in-memory runtime execution.
-* **Frontend Cloaking & 100% SEO Compatibility**: Protects rendered output while remaining completely transparent and friendly to search engine crawlers (Googlebot, Bingbot).
-* **Universal PHP & Web Server Compatibility**:
-  * **PHP Versions**: `7.3`, `7.4`, `8.0`, `8.1`, `8.2`, `8.3` (`php-fpm`, `php-cli`, and `lsphp`).
-  * **Web Servers & Panels**: Native auto-routing for **Nginx**, **Apache**, **OpenLiteSpeed**, and **aaPanel**.
-
-## 2. Repository Structure
-
-```text
-vinipoly-drm/
-├── cli/
-│   └── install-public.sh                        # Official Linux CLI Installer & Local Smart Encoder Console (v1.1.3)
-├── configs/
-│   ├── apache/.htaccess                         # Clean URL & .cme extensionless routing for Apache/OpenLiteSpeed
-│   ├── nginx/vinipoly-cme.conf                  # Nginx FastCGI configuration for .php & .cme execution
-│   └── php/.user.ini.example                    # Recommended open_basedir configuration
-├── docs/
-│   ├── en/INTEGRATION_GUIDE.md                  # Comprehensive English Integration & Cloud API Guide
-│   └── vi/INTEGRATION_GUIDE.md                  # Tài liệu tích hợp & Hướng dẫn sử dụng toàn diện (Tiếng Việt)
-├── examples/
-│   ├── php-ram-test/                            # Official PHP RAM Execution Test Suite (source_test.php & testcore.php)
-│   ├── js_quickstart.js                         # Node.js / TypeScript Cloud DRM SDK Quickstart
-│   ├── php_quickstart.php                       # PHP Cloud DRM SDK Quickstart
-│   ├── python_quickstart.py                     # Python Cloud DRM SDK Quickstart
-│   └── go_quickstart.go                         # Go Cloud DRM SDK Quickstart
-├── postman/
-│   ├── vinipoly_drm_postman_collection.en.json  # Postman Collection v2.1.0 (English)
-│   └── vinipoly_drm_postman_collection.vi.json  # Postman Collection v2.1.0 (Tiếng Việt)
-├── sdk/
-│   ├── js/                                      # JavaScript / TypeScript SDK (vinipoly_sdk.js + .d.ts)
-│   ├── php/                                     # PHP 7.4/8.x SDK (ViniPolySDK.php + composer.json)
-│   ├── python/                                  # Python 3.8+ Zero-Dependency SDK (vinipoly_sdk.py)
-│   └── go/                                      # Go 1.18+ SDK (vinipoly_sdk.go + go.mod)
-├── README.md                                    # English README (Default)
-├── README.vi.md                                 # Vietnamese README (Tiếng Việt)
-├── SECURITY.md                                  # Bilingual Security Policy
-├── CONTRIBUTING.md                              # Bilingual Contribution Guide
-├── CHANGELOG.md                                 # Release History
-└── LICENSE                                      # MIT License (Public Client Suite)
-```
-
-## 3. One-Line Linux Server Installation (`vinipoly` CLI)
-
-Run the following single command as `root` on your Linux VPS/Server (Ubuntu, Debian, CentOS, AlmaLinux, Rocky Linux with aaPanel) to install the ViniPoly CLI Console, auto-detect all installed PHP versions (`7.3`–`8.3`), attach the `vinipoly.so` Zend Extension, and configure your web server:
+Install the compiled **ViniPoly v3.0 Smart Console** (`/usr/local/bin/vinipoly`), auto-detect all installed PHP versions (`7.3` through `8.5`), and configure Nginx / Apache / OpenLiteSpeed automatically:
 
 ```bash
-curl -s -O https://cdn.chgm.in/install/v1.1.3/installer_vinipoly && chmod +x installer_vinipoly && ./installer_vinipoly
+curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/installer_vinipoly -o /usr/local/bin/vinipoly && chmod +x /usr/local/bin/vinipoly && vinipoly
 ```
 
-Once installed, simply type `vinipoly` in your terminal at any time to launch the interactive management dashboard:
+### Install Standalone CLI Encoder & Decoder Directly via Raw URLs
 
-| Menu Key | Feature Name | Description |
-| :---: | :--- | :--- |
-| **`[1]`** | **Install PHP Core** | Scans `/www/server/php/*` (PHP 7.3–8.3), installs `vinipoly.so`, and reloads `php-fpm` / `lsphp`. |
-| **`[2]`** | **Key Management** | Update your Local Recovery License Key (`/www/server/vinipoly.license`) or Cloud API Key (`/www/server/vinipoly.apikey`). |
-| **`[3]`** | **Smart Local Encoder** | Scans a project directory or single `.php` file (automatically skipping `vendor/` & `node_modules/`), checks Cloud Quota, compiles `.php` $\rightarrow$ `.cme` locally via `vinipoly-encoder`, and optionally removes original `.php` files. |
-| **`[4]`** | **Service Health Check** | Verifies running status of Nginx/Apache/OpenLiteSpeed, `vinipoly.so` per PHP version, and license permissions (`644`). |
-| **`[5]`** | **Cloud Account Info** | Queries `/api/drm/info` to display active Subscription Plan, Remaining File Quota, Allowed Hosts Firewall, and Expiration Date. |
-| **`[6]`** | **Auto-Update** | Checks `https://cdn.chgm.in/install/version.txt` and upgrades the CLI binary in-place. |
-| **`[7]`** | **Web Server Reroute** | Automatically configures Nginx, Apache, and OpenLiteSpeed to execute `.cme` files natively. |
-
-## 4. Official Cloud DRM SDKs & CI/CD Automation
-
-Integrate ViniPoly Cloud Encryption directly into your build pipelines or deployment scripts using our 4 official SDKs:
-
-### 4.1. JavaScript / TypeScript (`sdk/js/vinipoly_sdk.js`)
-```javascript
-const { ViniPolyClient } = require('./sdk/js/vinipoly_sdk.js');
-
-const client = new ViniPolyClient({
-  apiKey: process.env.VINIPOLY_API_KEY || 'VP_your_api_key_here',
-});
-
-// 1. Check account plan, remaining file quota & Allowed Hosts
-const info = await client.getAccountInfo();
-console.log(`Plan: ${info.plan.toUpperCase()} | Remaining Quota: ${info.quota} files`);
-
-// 2. Automatically upload source.zip in 10MB chunks & download encrypted .cme archive
-await client.encodeProjectZip('./dist/my-project-src.zip', './dist/Protected_by_ViniPoly.zip');
+```bash
+# Install Native Rust Encoder & Owner Recovery Decoder
+curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-encoder -o /usr/local/bin/vinipoly-encoder && chmod +x /usr/local/bin/vinipoly-encoder
+curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-decoder -o /usr/local/bin/vinipoly-decoder && chmod +x /usr/local/bin/vinipoly-decoder
 ```
 
-### 4.2. PHP (`sdk/php/ViniPolySDK.php`)
-```php
-<?php
-require_once __DIR__ . '/sdk/php/ViniPolySDK.php';
+### Manual Single-Command `.so` Deployment (Example: PHP 8.3)
 
-use ViniPolyDRM\ViniPolyClient;
-
-$client = new ViniPolyClient(getenv('VINIPOLY_API_KEY') ?: 'VP_your_api_key_here');
-
-$info = $client->getAccountInfo();
-echo "Remaining Quota: {$info['quota']} files\n";
-
-// Encrypt a ZIP archive in the cloud and save Protected_by_ViniPoly.zip
-$client->encodeProjectZip(__DIR__ . '/source.zip', __DIR__ . '/Protected_by_ViniPoly.zip');
+```bash
+EXT_DIR=$(php-config --extension-dir)
+curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php83/vinipoly.so -o "${EXT_DIR}/vinipoly.so"
+chmod 755 "${EXT_DIR}/vinipoly.so"
 ```
 
-### 4.3. Python (`sdk/python/vinipoly_sdk.py`)
-```python
-from sdk.python.vinipoly_sdk import ViniPolyClient
+---
 
-client = ViniPolyClient(api_key="VP_your_api_key_here")
+## 2. Direct Raw Binary Downloads (Linux x86_64)
 
-info = client.get_account_info()
-print(f"Plan: {info['plan']} | Quota: {info['quota']} files")
+All official distribution binaries in this repository are committed as **native raw Git blobs (no Git LFS throttling)** so automated CI/CD pipelines, Dockerfiles, and production servers can download them directly via `curl` or `wget`.
 
-# Chunked upload & cloud encryption (.php -> .cme)
-client.encode_project_zip("source.zip", "Protected_by_ViniPoly.zip")
+| Component | Target | Size | SHA-256 (Prefix) | Direct Raw Download |
+| :--- | :--- | :---: | :---: | :--- |
+| **`installer_vinipoly`** | Smart Server Installer & CLI Console | 48.2 KB | `3ecd7625f12f887f…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/installer_vinipoly) |
+| **`bin/vinipoly-encoder`** | Native Rust VPC3 AST Encoder CLI | 8.34 MB | `ec520eba7cc32617…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-encoder) |
+| **`bin/vinipoly-decoder`** | Owner & License Vault Recovery CLI | 8.40 MB | `b8ca185264e809f3…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-decoder) |
+| **`release-so/php73/vinipoly.so`** | Zend Native Loader — **PHP 7.3** | 413.5 KB | `69d7e0b20adc2b93…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php73/vinipoly.so) |
+| **`release-so/php74/vinipoly.so`** | Zend Native Loader — **PHP 7.4** | 412.7 KB | `cfe0e8178c0a845f…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php74/vinipoly.so) |
+| **`release-so/php80/vinipoly.so`** | Zend Native Loader — **PHP 8.0** | 411.9 KB | `aa84c298bff392ff…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php80/vinipoly.so) |
+| **`release-so/php81/vinipoly.so`** | Zend Native Loader — **PHP 8.1** | 414.1 KB | `cbff8be3467cf548…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php81/vinipoly.so) |
+| **`release-so/php82/vinipoly.so`** | Zend Native Loader — **PHP 8.2** | 417.6 KB | `35ebb6d7d4227918…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php82/vinipoly.so) |
+| **`release-so/php83/vinipoly.so`** | Zend Native Loader — **PHP 8.3** | 418.0 KB | `3aa93bb17d4da660…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php83/vinipoly.so) |
+| **`release-so/php84/vinipoly.so`** | Zend Native Loader — **PHP 8.4** | 421.9 KB | `d88746198942c8ae…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php84/vinipoly.so) |
+| **`release-so/php85/vinipoly.so`** | Zend Native Loader — **PHP 8.5** | 422.8 KB | `582e5c811c15f951…` | [Download Raw](https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php85/vinipoly.so) |
+
+> **Integrity Verification**: Verify any downloaded binary against [SHA256SUMS.txt](SHA256SUMS.txt):
+> ```bash
+> curl -fsSL https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/SHA256SUMS.txt | sha256sum -c --ignore-missing
+> ```
+
+---
+
+## 3. What's New in ViniPoly v3.0
+
+- **100% Native Zero-Eval Zend Execution (`vinipoly.so`)**: Compiles decrypted opcodes directly into Zend Engine RAM across **PHP 7.3 – 8.5** without `eval()` or temporary files.
+- **Transparent PHP Ecosystem Hooks**: Built-in Zend path & stat hooks seamlessly resolve `require`, `include`, PSR-4 Composer autoloaders, `file_exists()`, `is_file()`, and `is_readable()` from `.php` to `.cme` without modifying application code.
+- **Token-Safe AST Secret Vault (`vinipoly-encoder`)**: Automatically seals sensitive credentials, database DSNs, JWT keys, and payment/webhook secrets inside per-file hardware-attested vaults while preserving Heredocs/Nowdocs, PHP 8 Attributes, Enums, `declare(strict_types=1)`, and static frontend assets (`.js`, `.css`, `.png`, `.json`, `.htaccess`).
+- **Real-Time 2-Way Payload & Polymorphic DOM Vault**: Transparently encrypts HTML delivery and `fetch` / `XMLHttpRequest` API payloads while keeping external SDKs, OAuth2 callbacks, webhooks, and Cloudflare Turnstile 100% interference-free.
+- **Frameless Responsive Multilingual + RTL F12 Shield**: Closed Shadow DOM DevTools protection featuring the Midnight Horizon canvas, 11 built-in languages, and native Right-to-Left (`RTL`) layout for Arabic, Persian, and Hebrew, while preserving live session inputs with zero page reload.
+- **Native FCrDNS Search Bot Gatekeeper**: Cryptographic reverse/forward DNS verification ensures verified crawlers (Googlebot, Bingbot, Applebot) index SEO metadata cleanly while blocking User-Agent spoofing.
+- **Lossless Owner & Emergency Recovery (`vinipoly-decoder`)**: Authorized license holders can restore `.cme` packages back to bit-exact original `.php` source files anytime, even after rotating API keys.
+
+---
+
+## 4. Web Server & Clean URL Routing
+
+Running `vinipoly` automatically configures **aaPanel**, **OzonPanel**, **Ubuntu/Debian**, **CentOS/AlmaLinux/RHEL**, **Nginx**, **Apache 2.4**, and **OpenLiteSpeed / LiteSpeed Enterprise** (including `PHP-FPM` `security.limit_extensions` and detached `lsphp` workers).
+
+Ready-to-use manual templates are also available in [`configs/`](configs/):
+- **Apache / OpenLiteSpeed `.htaccess`**: [`configs/apache/.htaccess`](configs/apache/.htaccess)
+- **Nginx FastCGI**: [`configs/nginx/vinipoly-cme.conf`](configs/nginx/vinipoly-cme.conf)
+- **OpenLiteSpeed Vhost**: [`configs/openlitespeed/vhost-cme.conf`](configs/openlitespeed/vhost-cme.conf)
+
+---
+
+## 5. Repository Structure
+
+```text
+vinipoly/
+├── installer_vinipoly          # Precompiled Linux x86_64 Smart Installer & CLI Console
+├── bin/
+│   ├── vinipoly-encoder        # Precompiled Linux x86_64 Rust VPC3 Encoder CLI
+│   └── vinipoly-decoder        # Precompiled Linux x86_64 Rust Recovery Decoder CLI
+├── release-so/
+│   ├── php73/vinipoly.so       # Native Zend Extension for PHP 7.3
+│   ├── php74/vinipoly.so       # Native Zend Extension for PHP 7.4
+│   ├── php80/vinipoly.so       # Native Zend Extension for PHP 8.0
+│   ├── php81/vinipoly.so       # Native Zend Extension for PHP 8.1
+│   ├── php82/vinipoly.so       # Native Zend Extension for PHP 8.2
+│   ├── php83/vinipoly.so       # Native Zend Extension for PHP 8.3
+│   ├── php84/vinipoly.so       # Native Zend Extension for PHP 8.4
+│   └── php85/vinipoly.so       # Native Zend Extension for PHP 8.5
+├── configs/                    # Nginx, Apache & OpenLiteSpeed configuration snippets
+├── sdk/                        # Official Cloud CI/CD SDKs (PHP, JS/TS, Python, Go)
+├── docs/                       # Bilingual Integration Guides (EN / VI)
+├── SHA256SUMS.txt              # Cryptographic SHA-256 checksums for all binaries
+├── release.manifest.json       # Machine-readable release metadata & raw URLs
+└── version.txt                 # Current latest release tag (v3.0.0)
 ```
 
-### 4.4. Go (`sdk/go/vinipoly_sdk.go`)
-```go
-package main
+---
 
-import (
-	"context"
-	"fmt"
-	vinipolysdk "github.com/vinipoly-drm/vinipoly-sdk/sdk/go"
-)
+## License & Support
 
-func main() {
-	client, _ := vinipolysdk.NewClient(vinipolysdk.Config{
-		APIKey: "VP_your_api_key_here",
-	})
-	ctx := context.Background()
-
-	info, _ := client.GetAccountInfo(ctx)
-	fmt.Printf("Plan: %s | Quota: %d files\n", info.Plan, info.Quota)
-
-	_ = client.EncodeProjectZip(ctx, "source.zip", "Protected_by_ViniPoly.zip")
-}
-```
-
-## 5. Cloud DRM REST API Reference (`https://vinipoly.cm.io.vn/api/drm`)
-
-| # | Method & Path | Authentication | Request Payload / Params | Description |
-| :---: | :--- | :--- | :--- | :--- |
-| 01 | `GET /api/drm/info` | `?api_key=VP_...` | Query `api_key` | Returns subscription `plan`, remaining `quota`, `status`, `hosts`, and `expire` date. |
-| 02 | `GET /api/drm/settings` | `?api_key=VP_...` | Query `api_key` | Returns current API Key `status` (`active`/`inactive`) and `allowed_hosts` firewall list. |
-| 03 | `POST /api/drm/settings` | JSON `api_key` | `{"api_key", "status", "allowed_hosts"}` | Updates API Key status toggle and IP/Domain whitelist (`*` or comma-separated hosts). |
-| 04 | `GET /api/drm/history` | `?api_key=VP_...` | Query `api_key` | Returns the latest 30 encoding transactions (`action`, `file_count`, `ip`, `time`). |
-| 05 | `POST /api/drm/deduct-quota` | JSON `api_key` | `{"api_key", "file_count"}` | Verifies and deducts file quota for authenticated Local CLI Encoder executions. |
-| 06 | `POST /api/drm/upload-chunk` | Multipart Form | `upload_id`, `chunk` (10MB binary) | Appends a binary ZIP chunk to a temporary cloud build workspace. |
-| 07 | `POST /api/drm/cloud-encode` | Multipart Form | `upload_id`, `api_key` | Verifies `Allowed Hosts` & quota, compiles `.php` $\rightarrow$ `.cme`, and returns `Protected_by_ViniPoly.zip`. |
-
-## 6. Subscription Plans & Quota Tiers
-
-| Plan Tier | Code (`plan_type`) | File Quota | Validity Cycle | Best For |
-| :--- | :--- | :--- | :--- | :--- |
-| **Trial** | `trial` | `3 files` | 30 Days | Initial testing with `examples/php-ram-test/` |
-| **Free** | `free` | `30 files` | 30 Days | Small personal scripts & single modules |
-| **Pro** | `pro` | `150 files` | 30 Days | Commercial plugins, themes & medium web apps |
-| **Enterprise** | `enterprise` | `520 files` | 30 Days | Full-scale SaaS platforms & enterprise ERP/CRM |
-| **Pay-As-You-Go** | `pay_to_go` | Custom Top-Up | **Lifetime (Never Expires)** | On-demand production releases & CI/CD pipelines |
-
-## License
-
-The client SDKs, server configuration templates, and integration examples in this repository are licensed under the [MIT License](LICENSE).
+- **Product**: ViniPoly DRM Enterprise v3.0 — © **Chương Minh® Studio** ([https://chuongminh.com/vinipoly](https://chuongminh.com/vinipoly))
+- **SDKs & Config Templates**: MIT License ([LICENSE](LICENSE)). Precompiled `vinipoly.so`, `vinipoly-encoder`, `vinipoly-decoder`, and `installer_vinipoly` binaries are proprietary commercial software distributed for licensed ViniPoly users.

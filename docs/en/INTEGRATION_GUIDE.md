@@ -1,6 +1,6 @@
-# Comprehensive Technical & Integration Guide — ViniPoly DRM (v1.1.3 / Core v2.5.0)
+# Comprehensive Technical & Integration Guide — ViniPoly DRM (v3.0.0 / Core v3.0.0)
 
-Official technical documentation for server administrators, PHP developers, and DevOps teams integrating **ViniPoly DRM** (`https://vinipoly.cm.io.vn`).
+Official technical documentation for server administrators, PHP developers, and DevOps teams integrating **ViniPoly DRM** (`https://api.l.lc/vinipoly`).
 
 ## 1. Dual-Key Cryptographic Architecture & Zero-Disk Execution
 
@@ -30,7 +30,7 @@ ViniPoly DRM separates **Build-Time Authentication** from **Run-Time Execution**
 
 ### 2.1. One-Line Installation
 ```bash
-curl -s -O https://cdn.chgm.in/install/v1.1.3/installer_vinipoly && chmod +x installer_vinipoly && ./installer_vinipoly
+curl -s -O https://cdn.chgm.in/install/v3.0.0/installer_vinipoly && chmod +x installer_vinipoly && ./installer_vinipoly
 ```
 
 ### 2.2. Encoding Projects Locally (`vinipoly` Menu `[3]`)
@@ -67,11 +67,11 @@ security.limit_extensions = .php .php3 .php4 .php5 .php7 .cme
 
 ## 4. Cloud DRM REST API & CI/CD Automation
 
-Base URL: `https://vinipoly.cm.io.vn/api/drm`
+Base URL: `https://api.l.lc/vinipoly/api/drm`
 
 ### 4.1. Check Account & Quota (`GET /api/drm/info`)
 ```bash
-curl -s "https://vinipoly.cm.io.vn/api/drm/info?api_key=VP_your_api_key"
+curl -s "https://api.l.lc/vinipoly/api/drm/info?api_key=VP_your_api_key"
 ```
 **Response:**
 ```json
@@ -86,7 +86,7 @@ curl -s "https://vinipoly.cm.io.vn/api/drm/info?api_key=VP_your_api_key"
 
 ### 4.2. Update Firewall (`POST /api/drm/settings`)
 ```bash
-curl -s -X POST "https://vinipoly.cm.io.vn/api/drm/settings" \
+curl -s -X POST "https://api.l.lc/vinipoly/api/drm/settings" \
   -H "Content-Type: application/json" \
   -d '{"api_key": "VP_your_api_key", "status": "active", "allowed_hosts": "103.69.96.31, build.yourdomain.com"}'
 ```

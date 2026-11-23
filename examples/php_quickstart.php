@@ -1,6 +1,6 @@
 <?php
 /**
- * Quickstart Example — ViniPoly DRM PHP SDK (v1.1.3)
+ * Quickstart Example — ViniPoly DRM PHP SDK (v3.0.0)
  * Usage: VINIPOLY_API_KEY="VP_..." php examples/php_quickstart.php
  */
 require_once __DIR__ . '/../sdk/php/ViniPolySDK.php';

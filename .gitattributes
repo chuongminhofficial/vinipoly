@@ -1,0 +1,11 @@
+# Ensure LF line endings on text files and bit-exact storage on ELF/shared-object binaries
+* text=auto eol=lf
+
+# Precompiled Linux x86_64 Binaries (Direct Raw Download — Never Git LFS)
+installer_vinipoly binary -text
+bin/* binary -text
+release-so/** binary -text
+*.so binary -text
+*.png binary -text
+*.jpg binary -text
+*.ico binary -text

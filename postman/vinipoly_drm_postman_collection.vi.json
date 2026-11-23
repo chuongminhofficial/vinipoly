@@ -2,13 +2,13 @@
   "info": {
     "_postman_id": "vinipoly-drm-cloud-api-2026-vi",
     "name": "ViniPoly DRM Cloud API (Bộ Sưu Tập Chính Thức - VI)",
-    "description": "Bộ tài liệu Postman Collection v2.1.0 chính thức cho khách hàng tích hợp ViniPoly DRM (`https://vinipoly.cm.io.vn/api/drm`): Kiểm tra hạn ngạch, cấu hình tường lửa Allowed Hosts, xem lịch sử mã hóa và tự động hóa mã hóa `.php` sang `.cme` trên đám mây.\n\n- **Lưu ý bảo mật**: Chỉ bao gồm các Public Client Endpoints (`/api/drm/*`), hoàn toàn không chứa bất kỳ Admin Endpoint nào.",
+    "description": "Bộ tài liệu Postman Collection v2.1.0 chính thức cho khách hàng tích hợp ViniPoly DRM (`https://api.l.lc/vinipoly/api/drm`): Kiểm tra hạn ngạch, cấu hình tường lửa Allowed Hosts, xem lịch sử mã hóa và tự động hóa mã hóa `.php` sang `.cme` trên đám mây.\n\n- **Lưu ý bảo mật**: Chỉ bao gồm các Public Client Endpoints (`/api/drm/*`), hoàn toàn không chứa bất kỳ Admin Endpoint nào.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     {
       "key": "base_url",
-      "value": "https://vinipoly.cm.io.vn/api/drm",
+      "value": "https://api.l.lc/vinipoly/api/drm",
       "type": "string",
       "description": "Endpoint gốc của ViniPoly Cloud DRM API"
     },

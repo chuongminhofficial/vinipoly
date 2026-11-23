@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 ============================================================================
-VINIPOLY DRM — OFFICIAL CLOUD API & CI/CD SDK FOR PYTHON (v1.1.3 - Python 3.8+)
+VINIPOLY DRM — OFFICIAL CLOUD API & CI/CD SDK FOR PYTHON (v3.0.0 - Python 3.8+)
 ============================================================================
 Zero-dependency Python client library for automating PHP source code encryption
 (.php -> .cme), quota inspection, and firewall management on ViniPoly DRM Cloud
-(https://vinipoly.cm.io.vn).
+(https://api.l.lc/vinipoly).
 ============================================================================
 """
 
@@ -35,7 +35,7 @@ class ViniPolyClient:
     def __init__(
         self,
         api_key: str,
-        base_url: str = "https://vinipoly.cm.io.vn/api/drm",
+        base_url: str = "https://api.l.lc/vinipoly/api/drm",
         timeout: int = 60,
         chunk_size: int = 10 * 1024 * 1024,
     ) -> None:

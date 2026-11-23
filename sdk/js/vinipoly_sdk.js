@@ -1,9 +1,9 @@
 /**
  * ============================================================================
- * VINIPOLY DRM — OFFICIAL CLOUD API & CI/CD SDK FOR JAVASCRIPT / NODE.JS (v1.1.3)
+ * VINIPOLY DRM — OFFICIAL CLOUD API & CI/CD SDK FOR JAVASCRIPT / NODE.JS (v3.0.0)
  * ============================================================================
  * Official client library for integrating ViniPoly Enterprise PHP Source Code
- * Protection & Zero-Disk RAM Execution Platform (https://vinipoly.cm.io.vn).
+ * Protection & Zero-Disk RAM Execution Platform (https://api.l.lc/vinipoly).
  *
  * Features / Tính năng:
  * - Check account plan, remaining file quota & Allowed Hosts (/api/drm/info)
@@ -31,7 +31,7 @@ class ViniPolyClient {
    * Initialize ViniPoly DRM Cloud Client
    * @param {Object} config
    * @param {string} config.apiKey - ViniPoly API Key (e.g. 'VP_...')
-   * @param {string} [config.baseUrl='https://vinipoly.cm.io.vn/api/drm'] - Cloud DRM Gateway URL
+   * @param {string} [config.baseUrl='https://api.l.lc/vinipoly/api/drm'] - Cloud DRM Gateway URL
    * @param {number} [config.timeoutMs=30000] - Request timeout in ms
    * @param {number} [config.chunkSize=10485760] - Chunk size in bytes (default 10MB)
    */
@@ -40,7 +40,7 @@ class ViniPolyClient {
       throw new Error('ViniPolyClient: Missing required "apiKey" (VP_...).');
     }
     this.apiKey = config.apiKey.trim();
-    this.baseUrl = (config.baseUrl || 'https://vinipoly.cm.io.vn/api/drm').trim().replace(/\/+$/, '');
+    this.baseUrl = (config.baseUrl || 'https://api.l.lc/vinipoly/api/drm').trim().replace(/\/+$/, '');
     this.timeoutMs = Number(config.timeoutMs) > 0 ? Number(config.timeoutMs) : 30000;
     this.chunkSize = Number(config.chunkSize) > 0 ? Number(config.chunkSize) : 10 * 1024 * 1024;
   }

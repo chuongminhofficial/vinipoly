@@ -1,10 +1,10 @@
 <?php
 /**
  * ============================================================================
- * VINIPOLY DRM — OFFICIAL CLOUD API & CI/CD SDK FOR PHP (v1.1.3 - PHP 7.4/8.x)
+ * VINIPOLY DRM — OFFICIAL CLOUD API & CI/CD SDK FOR PHP (v3.0.0 - PHP 7.4/8.x)
  * ============================================================================
  * Bộ thư viện tích hợp chính thức cho nền tảng mã hóa bảo vệ mã nguồn PHP
- * thực thi trực tiếp trong RAM ViniPoly DRM (https://vinipoly.cm.io.vn).
+ * thực thi trực tiếp trong RAM ViniPoly DRM (https://api.l.lc/vinipoly).
  * ============================================================================
  */
 
@@ -36,7 +36,7 @@ class ViniPolyClient {
             throw new ViniPolyException('ViniPolyClient: API Key (VP_...) cannot be empty.', 400);
         }
         $this->apiKey = $apiKey;
-        $this->baseUrl = rtrim(trim($options['base_url'] ?? 'https://vinipoly.cm.io.vn/api/drm'), '/');
+        $this->baseUrl = rtrim(trim($options['base_url'] ?? 'https://api.l.lc/vinipoly/api/drm'), '/');
         $this->timeoutSec = max(5, (int)($options['timeout'] ?? 60));
         $this->chunkSize = max(1024 * 1024, (int)($options['chunk_size'] ?? 10 * 1024 * 1024));
     }

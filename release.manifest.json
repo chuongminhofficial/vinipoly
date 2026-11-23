@@ -1,0 +1,87 @@
+{
+  "product": "ViniPoly DRM Enterprise",
+  "vendor": "Chuong Minh Studio",
+  "website": "https://chuongminh.com/vinipoly",
+  "version": "v3.0.0",
+  "released_at": "2026-11-24T00:00:00Z",
+  "platform": "linux-x86_64",
+  "php_versions": [
+    "7.3",
+    "7.4",
+    "8.0",
+    "8.1",
+    "8.2",
+    "8.3",
+    "8.4",
+    "8.5"
+  ],
+  "raw_base_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main",
+  "artifacts": [
+    {
+      "path": "installer_vinipoly",
+      "bytes": 49368,
+      "sha256": "3ecd7625f12f887fdb0903c3cace0efc4e635caa767de493b09bf5894d419509",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/installer_vinipoly"
+    },
+    {
+      "path": "bin/vinipoly-encoder",
+      "bytes": 8740280,
+      "sha256": "ec520eba7cc32617fd46f9b4eb3d0bbe2bcc2fda634b339bc5264925dd6e0890",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-encoder"
+    },
+    {
+      "path": "bin/vinipoly-decoder",
+      "bytes": 8803264,
+      "sha256": "b8ca185264e809f3f7337bf20a31b591230b06daa7e21d02e996d9a17fc4336f",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/bin/vinipoly-decoder"
+    },
+    {
+      "path": "release-so/php73/vinipoly.so",
+      "bytes": 423432,
+      "sha256": "69d7e0b20adc2b93b1800e60a089ccafd4f740331302651368eac280c2368083",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php73/vinipoly.so"
+    },
+    {
+      "path": "release-so/php74/vinipoly.so",
+      "bytes": 422584,
+      "sha256": "cfe0e8178c0a845f470441fda253532bd3e1548cbfc82b60a433fb4071d4978e",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php74/vinipoly.so"
+    },
+    {
+      "path": "release-so/php80/vinipoly.so",
+      "bytes": 421736,
+      "sha256": "aa84c298bff392fffaa2f7c2d9779d5921fec3e797a7e8bc3ab171d8228155a6",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php80/vinipoly.so"
+    },
+    {
+      "path": "release-so/php81/vinipoly.so",
+      "bytes": 424072,
+      "sha256": "cbff8be3467cf5489971bf96f083930391f60429b0bb4edfe3adde6c6d71f8f7",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php81/vinipoly.so"
+    },
+    {
+      "path": "release-so/php82/vinipoly.so",
+      "bytes": 427632,
+      "sha256": "35ebb6d7d422791818b5e42c6283fea0abf22a23cb53bed50bb532a4c260f71b",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php82/vinipoly.so"
+    },
+    {
+      "path": "release-so/php83/vinipoly.so",
+      "bytes": 428072,
+      "sha256": "3aa93bb17d4da660964a489eed3f7ae0ea5143bcc871df0a7ce720a7dbefb0c6",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php83/vinipoly.so"
+    },
+    {
+      "path": "release-so/php84/vinipoly.so",
+      "bytes": 432056,
+      "sha256": "d88746198942c8ae3dbfb26f77622b68d7a0620d2cc23bdb58452c9ac472b4bb",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php84/vinipoly.so"
+    },
+    {
+      "path": "release-so/php85/vinipoly.so",
+      "bytes": 432944,
+      "sha256": "582e5c811c15f9510e652608915dbfd6d1437576e4ec69b2bf06464b4f418573",
+      "raw_url": "https://raw.githubusercontent.com/chuongminhofficial/vinipoly/main/release-so/php85/vinipoly.so"
+    }
+  ]
+}

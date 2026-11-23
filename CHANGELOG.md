@@ -1,12 +1,15 @@
-# Changelog / Lịch Sử Phiên Bản — ViniPoly DRM
+# Changelog
 
-## [CLI v1.1.3 / Core Engine v2.5.0] — 2026
-### 🇬🇧 English
-* **Zero-Disk RAM Execution (`vinipoly.so` v2.5.0)**: Enhanced PHP 7.3–8.3 Zend Extension with zero temporary disk writes, AES-256-GCM verification, and full SEO crawler compatibility.
-* **Enterprise CLI Console (`v1.1.3`)**: Smart directory scanner (auto-excluding `vendor/` and `node_modules/`), conflict detection for existing `.cme` files, and automated Nginx / Apache / OpenLiteSpeed routing.
-* **Official 4-Language Cloud DRM SDKs**: Released JavaScript/TypeScript, PHP, Python, and Go SDKs supporting 10MB chunked uploads and CI/CD automation.
+## [v3.0.0] - 2026-11-24
 
-### 🇻🇳 Tiếng Việt
-* **Thực Thi 100% Trong RAM (`vinipoly.so` v2.5.0)**: Nâng cấp Zend Extension hỗ trợ PHP 7.3–8.3, giải mã AES-256-GCM trực tiếp trong bộ nhớ RAM và tối ưu hóa SEO tuyệt đối.
-* **Bảng Điều Khiển CLI Doanh Nghiệp (`v1.1.3`)**: Quét thư mục thông minh (tự động bỏ qua `vendor/` và `node_modules/`), kiểm tra trùng lặp `.cme` và tự động cấu hình Nginx / Apache / OpenLiteSpeed.
-* **Bộ SDK Đám Mây 4 Ngôn Ngữ**: Phát hành đồng bộ SDK cho JavaScript/TypeScript, PHP, Python và Go hỗ trợ cắt chunk 10MB và tích hợp CI/CD tự động.
+### Added
+- Precompiled native `vinipoly.so` Zend extensions for **PHP 7.3, 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, and 8.5** under `release-so/`.
+- Precompiled Linux x86_64 `bin/vinipoly-encoder`, `bin/vinipoly-decoder`, and `installer_vinipoly` binaries with direct GitHub Raw download support and `SHA256SUMS.txt` verification.
+- Native Zend `zend_resolve_path` and `file_exists()` / `is_file()` / `is_readable()` hooks for zero-touch PSR-4 & multi-file PHP compatibility.
+- Token-safe PHP AST scanner with Heredoc/Nowdoc, PHP 8 Attribute/Enum, and static asset preservation.
+- Frameless Midnight Horizon Closed Shadow DOM F12 shield with 11 built-in languages and native Right-to-Left (RTL) support.
+- Cookie-independent `X-VP-TK` session transport header and CSP `nonce` propagation.
+
+### Changed
+- Upgraded container format to `CM_ENC v3` with per-file isolated runtime, constant, and owner recovery keys.
+- Removed legacy plaintext installer script in favor of the compiled `installer_vinipoly` binary.

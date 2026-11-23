@@ -1,4 +1,4 @@
-name: ViniPoly SDK & CLI Validation
+name: ViniPoly Release & SDK Integrity CI
 
 on:
   push:
@@ -12,15 +12,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate Public CLI Bash Syntax
-        run: bash -n cli/install-public.sh
+      - name: Verify Binary SHA-256 Checksums & ELF Headers
+        run: |
+          sha256sum -c SHA256SUMS.txt
+          test -x installer_vinipoly
+          test -x bin/vinipoly-encoder
+          test -x bin/vinipoly-decoder
+          for v in 73 74 80 81 82 83 84 85; do
+            test -f "release-so/php${v}/vinipoly.so"
+          done
+
+      - name: Validate Release Manifest & Postman JSON Collections
+        run: |
+          python3 -c "import json; json.load(open('release.manifest.json')); json.load(open('postman/vinipoly_drm_postman_collection.en.json')); json.load(open('postman/vinipoly_drm_postman_collection.vi.json'))"
 
       - name: Validate JavaScript SDK Syntax
         run: node --check sdk/js/vinipoly_sdk.js && node --check examples/js_quickstart.js
 
       - name: Validate Python SDK Syntax
         run: python3 -m py_compile sdk/python/vinipoly_sdk.py examples/python_quickstart.py
-
-      - name: Validate Postman JSON Collections
-        run: |
-          python3 -c "import json; json.load(open('postman/vinipoly_drm_postman_collection.en.json')); json.load(open('postman/vinipoly_drm_postman_collection.vi.json'))"

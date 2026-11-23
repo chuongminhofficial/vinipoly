@@ -1,6 +1,6 @@
-# Tài Liệu Kỹ Thuật & Hướng Dẫn Tích Hợp Toàn Diện — ViniPoly DRM (v1.1.3 / Core v2.5.0)
+# Tài Liệu Kỹ Thuật & Hướng Dẫn Tích Hợp Toàn Diện — ViniPoly DRM (v3.0.0 / Core v3.0.0)
 
-Tài liệu kỹ thuật chính thức dành cho quản trị viên máy chủ, lập trình viên PHP và đội ngũ DevOps tích hợp nền tảng **ViniPoly DRM** (`https://vinipoly.cm.io.vn`).
+Tài liệu kỹ thuật chính thức dành cho quản trị viên máy chủ, lập trình viên PHP và đội ngũ DevOps tích hợp nền tảng **ViniPoly DRM** (`https://api.l.lc/vinipoly`).
 
 ## 1. Kiến Trúc Khóa Kép & Cơ Chế Thực Thi Trực Tiếp Trong RAM
 
@@ -30,7 +30,7 @@ Hệ thống ViniPoly DRM tách biệt rõ ràng giữa **Khóa xác thực khi 
 
 ### 2.1. Lệnh Cài Đặt Duy Nhất Cho Khách Hàng
 ```bash
-curl -s -O https://cdn.chgm.in/install/v1.1.3/installer_vinipoly && chmod +x installer_vinipoly && ./installer_vinipoly
+curl -s -O https://cdn.chgm.in/install/v3.0.0/installer_vinipoly && chmod +x installer_vinipoly && ./installer_vinipoly
 ```
 
 ### 2.2. Quy Trình Mã Hóa Dự Án Thông Minh (Phím `[3]`)
@@ -61,11 +61,11 @@ RewriteRule ^(.*)$ $1.cme [L]
 
 ## 4. Tích Hợp Cloud DRM REST API & Tự Động Hóa CI/CD
 
-Endpoint gốc: `https://vinipoly.cm.io.vn/api/drm`
+Endpoint gốc: `https://api.l.lc/vinipoly/api/drm`
 
 ### 4.1. Kiểm Tra Tài Khoản & Hạn Ngạch (`GET /api/drm/info`)
 ```bash
-curl -s "https://vinipoly.cm.io.vn/api/drm/info?api_key=VP_your_api_key"
+curl -s "https://api.l.lc/vinipoly/api/drm/info?api_key=VP_your_api_key"
 ```
 **Phản hồi JSON:**
 ```json
@@ -80,7 +80,7 @@ curl -s "https://vinipoly.cm.io.vn/api/drm/info?api_key=VP_your_api_key"
 
 ### 4.2. Cập Nhật Tường Lửa Allowed Hosts (`POST /api/drm/settings`)
 ```bash
-curl -s -X POST "https://vinipoly.cm.io.vn/api/drm/settings" \
+curl -s -X POST "https://api.l.lc/vinipoly/api/drm/settings" \
   -H "Content-Type: application/json" \
   -d '{"api_key": "VP_your_api_key", "status": "active", "allowed_hosts": "103.69.96.31, server.domain.com"}'
 ```

@@ -1,8 +1,8 @@
 // ============================================================================
-// VINIPOLY DRM — OFFICIAL CLOUD API & CI/CD SDK FOR GO (v1.1.3 - Go 1.18+)
+// VINIPOLY DRM — OFFICIAL CLOUD API & CI/CD SDK FOR GO (v3.0.0 - Go 1.18+)
 // ============================================================================
 // Package vinipolysdk provides the official Go client for integrating with
-// the ViniPoly DRM Cloud Gateway (https://vinipoly.cm.io.vn/api/drm).
+// the ViniPoly DRM Cloud Gateway (https://api.l.lc/vinipoly/api/drm).
 // ============================================================================
 
 package vinipolysdk
@@ -23,7 +23,7 @@ import (
 	"time"
 )
 
-const DefaultBaseURL = "https://vinipoly.cm.io.vn/api/drm"
+const DefaultBaseURL = "https://api.l.lc/vinipoly/api/drm"
 
 type APIError struct {
 	StatusCode int    `json:"status_code"`

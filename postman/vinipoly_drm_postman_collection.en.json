@@ -2,13 +2,13 @@
   "info": {
     "_postman_id": "vinipoly-drm-cloud-api-2026-en",
     "name": "ViniPoly DRM Cloud API (Official Public Collection - EN)",
-    "description": "Official Postman Collection v2.1.0 for integrating ViniPoly DRM (`https://vinipoly.cm.io.vn/api/drm`): Inspect file quota, manage Allowed Hosts firewall, view encoding history, and automate cloud `.php` -> `.cme` compilation.",
+    "description": "Official Postman Collection v2.1.0 for integrating ViniPoly DRM (`https://api.l.lc/vinipoly/api/drm`): Inspect file quota, manage Allowed Hosts firewall, view encoding history, and automate cloud `.php` -> `.cme` compilation.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     {
       "key": "base_url",
-      "value": "https://vinipoly.cm.io.vn/api/drm",
+      "value": "https://api.l.lc/vinipoly/api/drm",
       "type": "string",
       "description": "Base URL for ViniPoly Cloud DRM API"
     },

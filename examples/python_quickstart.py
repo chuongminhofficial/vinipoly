@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quickstart Example — ViniPoly DRM Python SDK (v1.1.3)
+Quickstart Example — ViniPoly DRM Python SDK (v3.0.0)
 Usage: VINIPOLY_API_KEY="VP_..." python3 examples/python_quickstart.py
 """
 import os

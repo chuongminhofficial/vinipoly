@@ -1,8 +1,43 @@
-# Chuyển hướng trình duyệt từ file có đuôi .cme sang không đuôi (Để làm sạch URL)
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/([^.]+)\.cme [NC]
-RewriteRule ^ %1 [R=301,L]
+# ViniPoly DRM v3.0 — Apache & OpenLiteSpeed Clean URL + .CME Execution Router
+Options -MultiViews
+DirectoryIndex index.cme index.php index.html
 
-# Xử lý ngầm: Khi khách truy cập /index, hệ thống tự hiểu là chạy file /index.cme
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.cme -f
-RewriteRule ^(.*)$ $1.cme [L]
+<FilesMatch "\.cme$">
+    SetHandler application/x-httpd-php
+    ForceType application/x-httpd-php
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Block direct access to sensitive config files while allowing Let's Encrypt (.well-known)
+    RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
+    RewriteRule (?:^|/)\.(?:env|git|svn|ht) - [F,L,NC]
+    RewriteRule \.(?:pem|key|sql)$ - [F,L,NC]
+
+    # 1. Clean 301 Redirects from .cme to extensionless URLs (GET/HEAD only — preserves POST payloads)
+    RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$ [NC]
+    RewriteCond %{THE_REQUEST} \s/+index\.cme(?:[\s?]|$) [NC]
+    RewriteRule ^ / [R=301,L,NE]
+
+    RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$ [NC]
+    RewriteCond %{THE_REQUEST} \s/+(.+?)/index\.cme(?:[\s?]|$) [NC]
+    RewriteRule ^ /%1/ [R=301,L,NE]
+
+    RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$ [NC]
+    RewriteCond %{THE_REQUEST} \s/+(.+?)\.cme(?:[\s?]|$) [NC]
+    RewriteRule ^ /%1 [R=301,L,NE]
+
+    # 2. Seamless .php -> .cme compatibility fallback when .php files are replaced by .cme
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} ^(.*)\.php$
+    RewriteCond %1.cme -f
+    RewriteRule ^(.*)\.php$ $1.cme [T=application/x-httpd-php,L,QSA]
+
+    # 3. Multi-level Clean URL mapping (/app or /dir/app -> /app.cme or /dir/app.cme)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{DOCUMENT_ROOT}/$1.cme -f
+    RewriteRule ^(.+?)/?$ $1.cme [T=application/x-httpd-php,L,QSA]
+</IfModule>

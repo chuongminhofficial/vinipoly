@@ -1,5 +1,5 @@
 /**
- * Quickstart Example — ViniPoly DRM JavaScript/Node.js SDK (v1.1.3)
+ * Quickstart Example — ViniPoly DRM JavaScript/Node.js SDK (v3.0.0)
  * Usage: VINIPOLY_API_KEY="VP_..." node examples/js_quickstart.js
  */
 const { ViniPolyClient, ViniPolyError } = require('../sdk/js/vinipoly_sdk.js');
